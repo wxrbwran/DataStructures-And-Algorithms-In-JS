@@ -1,8 +1,11 @@
+// 队列
 class Queue<T> {
   public items: T[];
+
   constructor() {
     this.items = [];
   }
+
   enqueue(item: T) {
     this.items.push(item);
   }

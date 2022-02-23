@@ -1,3 +1,5 @@
+// 栈
+
 class Stack<T> {
   public items: T[];
 
