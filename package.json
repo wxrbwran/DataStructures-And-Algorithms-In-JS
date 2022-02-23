@@ -4,8 +4,14 @@
   "description": "",
   "main": ".eslintrc.js",
   "scripts": {
+    "prepare": "husky install",
     "test": "jest --watch",
-    "prepare": "husky install"
+    "lint": "eslint --ext ts,tsx src/ --fix"
+  },
+  "lint-staged": {
+    "*.ts?(x)": [
+      "eslint --fix"
+    ]
   },
   "keywords": [
     "DataStructures",
