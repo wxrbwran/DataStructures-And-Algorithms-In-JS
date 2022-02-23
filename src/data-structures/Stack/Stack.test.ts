@@ -11,6 +11,7 @@ test('向stack实例添加item', () => {
   stack.push(2);
   expect(stack.isEmpty()).toBeFalsy();
   expect(stack.peek()).toBe(2);
+  expect(stack.toString()).toBe('12');
 });
 
 test('stack取出item', () => {

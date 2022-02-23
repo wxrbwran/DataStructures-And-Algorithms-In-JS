@@ -4,6 +4,7 @@
 module.exports = {
   roots: ['<rootDir>'],
   testURL: 'http://localhost:8000',
+  // collectCoverage: true,
   coverageDirectory: 'coverage',
   coverageReporters: ['json', 'text', 'lcov', 'clover'],
   collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}', '!src/**/*.d.ts'],
