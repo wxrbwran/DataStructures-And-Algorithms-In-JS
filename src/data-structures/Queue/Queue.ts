@@ -2,8 +2,8 @@
 class Queue<T> {
   public items: T[];
 
-  constructor() {
-    this.items = [];
+  constructor(items?: T[]) {
+    this.items = items || [];
   }
 
   enqueue(item: T) {
