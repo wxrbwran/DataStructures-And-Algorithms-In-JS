@@ -25,6 +25,31 @@ test('set调用values, 应为[1,2]数组', () => {
   expect(arr.length).toBe(2);
 });
 
+test('并集', () => {
+  const otherSet = new NewSet({ 3: 3, 4: 4 });
+  expect(set.union(otherSet)).toMatchObject({ items: { 1: 1, 2: 2, 3: 3, 4: 4 } });
+});
+
+test('交集', () => {
+  const otherSet = new NewSet({ 3: 3, 4: 4 });
+  expect(set.intersection(otherSet)).toMatchObject({ items: {} });
+  otherSet.add(1);
+  expect(set.intersection(otherSet)).toMatchObject({ items: { 1: 1 } });
+});
+
+test('差集', () => {
+  const otherSet = new NewSet({ 3: 3, 4: 4 });
+  expect(set.difference(otherSet)).toMatchObject({ items: { 1: 1, 2: 2 } });
+  otherSet.add(1);
+  expect(set.difference(otherSet)).toMatchObject({ items: { 2: 2 } });
+});
+test('子集', () => {
+  const otherSet = new NewSet({ 3: 3, 4: 4 });
+  expect(set.isSubsetOf(otherSet)).toBeFalsy();
+  otherSet.add(1);
+  otherSet.add(2);
+  expect(set.isSubsetOf(otherSet)).toBeTruthy();
+});
 test('set调用clear,isEmpty应为真', () => {
   set.clear();
   expect(set.isEmpty()).toBeTruthy();
