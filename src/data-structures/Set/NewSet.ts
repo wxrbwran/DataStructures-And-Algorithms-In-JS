@@ -6,7 +6,7 @@ class NewSet {
     this.items = items || {};
   }
 
-  has(item: string): boolean {
+  has(item: any): boolean {
     // return item in this.items;
     return Object.prototype.hasOwnProperty.call(this.items, item);
   }
@@ -29,6 +29,10 @@ class NewSet {
     return Object.keys(this.items).length;
   }
 
+  isEmpty(): boolean {
+    return this.size() === 0;
+  }
+
   values(): string[] {
     return Object.values(this.items);
   }
@@ -37,3 +41,5 @@ class NewSet {
     this.items = {};
   }
 }
+
+export default NewSet;

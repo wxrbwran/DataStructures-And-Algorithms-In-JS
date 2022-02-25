@@ -14,7 +14,7 @@ module.exports = {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
   // setupFiles: ['<rootDir>/config/jest/shim.js'],
-  setupFilesAfterEnv: ['<rootDir>/config/jest/setupTests.ts'],
+  // setupFilesAfterEnv: ['<rootDir>/config/jest/setupTests.ts'],
   testEnvironment: 'node',
 
   testMatch: [
