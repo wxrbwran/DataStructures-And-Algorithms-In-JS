@@ -1,4 +1,5 @@
 import { defaultToString } from '../../utils';
+import LinkedList from '../LinkedList/LinkedList';
 class HashTable {
   public toStrFn: (p: Object) => string;
 
@@ -28,25 +29,45 @@ class HashTable {
   put(key: Object, val: Object): boolean {
     if (!!key && !!val) {
       const position = this.hashCode(key);
-      this.table[position] = val;
+      if (!this.table[position]) {
+        this.table[position] = new LinkedList();
+      }
+      this.table[position].push(val);
       return true;
     }
     return false;
   }
 
   get(key: Object): Object | undefined {
-    if (!!key) {
-      const position = this.hashCode(key);
-      return this.table[position];
+    const position = this.hashCode(key);
+    const linkedList = this.table[position];
+    if (!!linkedList && !linkedList.isEmpty()) {
+      let cur = linkedList.getHead();
+      while (!!cur) {
+        if (cur.ele === key) {
+          return cur.ele;
+        }
+        cur = cur.next;
+      }
     }
     return undefined;
   }
 
   remove(key: Object): boolean {
-    if (!!key) {
-      const position = this.hashCode(key);
-      delete this.table[position];
-      return true;
+    const position = this.hashCode(key);
+    const linkedList = this.table[position];
+    if (!!linkedList && !linkedList.isEmpty()) {
+      let cur = linkedList.getHead();
+      while (!!cur) {
+        if (cur.ele === key) {
+          linkedList.remove(key);
+          if (linkedList.isEmpty()) {
+            delete this.table[position];
+          }
+          return false;
+        }
+        cur = cur.next;
+      }
     }
     return false;
   }
