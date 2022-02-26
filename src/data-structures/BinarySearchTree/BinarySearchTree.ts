@@ -145,6 +145,40 @@ class BinarySearchTree {
       return node;
     }
   }
+
+  bfs(node: node = this.root): number[] {
+    if (!node) {
+      return [];
+    }
+    let queue = [node]; //将根节点加入到队列中
+    let result: number[] = []; //结果数组
+    while (queue.length) {
+      let len = queue.length; //队列中长度循环一次就得变一次
+      let tempArr: number[] = []; //存储每层节点值的临时数组，方便一层层打印
+      for (let i = 0; i < len; i++) {
+        //遍历每层节点
+        let temp = queue.shift();
+        tempArr.push((temp as Node).key);
+        if (temp?.left) {
+          queue.push(node.left as Node);
+        }
+        if (temp?.right) {
+          queue.push(node.right as Node);
+        }
+      }
+      result.push(...tempArr);
+    }
+    return result;
+  }
+
+  dfs(node: node = this.root, list: number[] = []): number[] {
+    if (!!node) {
+      list.push(node.key);
+      this.dfs(node.left, list);
+      this.dfs(node.right, list);
+    }
+    return list;
+  }
 }
 
 export default BinarySearchTree;
