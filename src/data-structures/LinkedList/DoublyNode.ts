@@ -1,4 +1,4 @@
-import Node from './Node';
+import Node from '../LinkedList/Node';
 
 class DoublyNode<T> extends Node<T> {
   public prev?: Node<T> | undefined;
