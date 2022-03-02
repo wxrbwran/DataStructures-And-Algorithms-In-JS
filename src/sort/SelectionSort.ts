@@ -1,5 +1,5 @@
 import { swap } from '../utils';
-
+// O(n^2)
 function selectionSort(array: number[]) {
   const { length } = array;
   let indexMin;

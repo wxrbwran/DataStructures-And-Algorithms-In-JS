@@ -1,3 +1,5 @@
+// O(n^2)
+
 function insertionSort(array: number[]) {
   const { length } = array;
   let temp;

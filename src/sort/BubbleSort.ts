@@ -1,5 +1,5 @@
 import { swap } from '../utils';
-
+// O(n^2)
 function bubbleSort(array: number[]) {
   const { length } = array;
   for (let i = 0; i < length; i++) {
