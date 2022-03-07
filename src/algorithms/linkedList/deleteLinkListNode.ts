@@ -1,5 +1,5 @@
-// leetcode 237
 // 删除链表中的节点
+// leetcode 237
 // 时间 O(1), 空间O(1)
 import Node from '../../data-structures/LinkedList/Node';
 

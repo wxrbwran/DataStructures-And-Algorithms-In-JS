@@ -37,11 +37,7 @@ export const isValid = (str: string): boolean => {
       // console.log('key s', s);
       stack.push(s);
     } else if (Object.values(map).includes(s)) {
-      // console.log('value s', s);
-      const prev = stack[stack.length - 1];
-      const expect = map[prev];
-      // console.log('expect expect', expect);
-      if (expect === s) {
+      if (map[stack[stack.length - 1]] === s) {
         stack.pop();
       }
     } else {
