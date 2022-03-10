@@ -1,6 +1,7 @@
 import Node from './Node';
 
 type node = Node | null | undefined;
+type callbackFn = (key: number) => void;
 class BinarySearchTree {
   public root: node;
 
@@ -32,6 +33,7 @@ class BinarySearchTree {
     }
   }
 
+  // 中序遍历
   inOrderTraverse(callback: (key: number) => void) {
     this.inOrderTraverseNode(this.root as Node, callback);
   }
@@ -44,6 +46,25 @@ class BinarySearchTree {
     }
   }
 
+  // 中序遍历 非递归版
+  inOrder(node: node = this.root, callback?: callbackFn): void {
+    const stack = [];
+    let p = node;
+    while (stack.length > 0 || p) {
+      while (p) {
+        stack.push(p);
+        p = p.left;
+      }
+      const n = stack.pop() as Node;
+      console.log(n.key);
+      if (callback) {
+        callback(n.key);
+      }
+      p = n.right;
+    }
+  }
+
+  // 先序遍历
   preOrderTraverse(callback: (key: number) => void) {
     this.preOrderTraverseNode(this?.root, callback);
   }
@@ -56,6 +77,24 @@ class BinarySearchTree {
     }
   }
 
+  // 先序遍历 非递归版
+  preOrder(node: node = this.root, callback?: callbackFn): void {
+    const stack = [node];
+    while (stack.length > 0) {
+      const n = stack.pop() as Node;
+      if (callback) {
+        callback(n.key);
+      }
+      if (n.right) {
+        stack.push(n.right);
+      }
+      if (n.left) {
+        stack.push(n.left);
+      }
+    }
+  }
+
+  // 后序遍历
   postOrderTraverse(callback: (key: number) => void) {
     this.postOrderTraverseNode(this.root, callback);
   }
@@ -65,6 +104,29 @@ class BinarySearchTree {
       this.postOrderTraverseNode(node.left, callback);
       this.postOrderTraverseNode(node.right, callback);
       callback(node.key);
+    }
+  }
+
+  // 后序遍历 非递归版
+  postOrder(node: node = this.root, callback?: callbackFn): void {
+    const stack = [node];
+    const res = [];
+    while (stack.length > 0) {
+      const n = stack.pop() as Node;
+      res.push(n);
+      if (n.left) {
+        stack.push(n.left);
+      }
+      if (n.right) {
+        stack.push(n.right);
+      }
+    }
+    while (res.length) {
+      const n = res.pop() as Node;
+      console.log(n?.key);
+      if (callback) {
+        callback(n.key);
+      }
     }
   }
 
@@ -146,6 +208,11 @@ class BinarySearchTree {
     }
   }
 
+  // 广度
+  // 1. 新建一个队列，根节点入队
+  // 2. 对头出队并访问
+  // 3. 对头的children挨个入队
+  // 4. 重复2，3，直到对列为空
   bfs(node: node = this.root): number[] {
     if (!node) {
       return [];
@@ -153,9 +220,8 @@ class BinarySearchTree {
     let queue = [node]; //将根节点加入到队列中
     let result: number[] = []; //结果数组
     while (queue.length) {
-      let len = queue.length; //队列中长度循环一次就得变一次
       let tempArr: number[] = []; //存储每层节点值的临时数组，方便一层层打印
-      for (let i = 0; i < len; i++) {
+      for (let i = 0; i < queue.length; i++) {
         //遍历每层节点
         let temp = queue.shift();
         tempArr.push((temp as Node).key);
@@ -171,6 +237,9 @@ class BinarySearchTree {
     return result;
   }
 
+  // 深度
+  // 访问根节点
+  // 对根节点的children挨个进行深度优先遍历
   dfs(node: node = this.root, list: number[] = []): number[] {
     if (!!node) {
       list.push(node.key);
