@@ -1,6 +1,11 @@
-import { Graph, dfs } from './Graph';
+import { Graph as graph, dfs, bfs } from './Graph';
 
 test('dfs', () => {
-  dfs(Graph);
+  dfs(0, graph);
+  expect(1).toBeTruthy();
+});
+
+test('bfs', () => {
+  bfs(0, graph);
   expect(1).toBeTruthy();
 });
