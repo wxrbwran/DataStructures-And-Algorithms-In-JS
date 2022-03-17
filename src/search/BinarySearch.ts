@@ -6,10 +6,10 @@ function binarySearch(array: number[], value: number) {
   let high = sortedArray.length - 1;
   while (low <= high) {
     const mid = Math.floor((low + high) / 2);
-    const element = sortedArray[mid];
-    if (element < value) {
+    const midVal = sortedArray[mid];
+    if (midVal < value) {
       low = mid + 1;
-    } else if (element > value) {
+    } else if (midVal > value) {
       high = mid - 1;
     } else {
       return mid;
