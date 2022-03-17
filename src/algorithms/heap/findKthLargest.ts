@@ -5,7 +5,7 @@
 import MinHeap from '../../data-structures/Heap/MinHeap';
 
 export default function findKthLargest(nums: number[], k: number): number {
-  const heap = new MinHeap();
+  const heap = new MinHeap<number>();
   nums.forEach((n) => {
     heap.insert(n);
     if (heap.size() > k) {

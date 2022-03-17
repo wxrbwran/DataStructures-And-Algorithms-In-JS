@@ -1,4 +1,5 @@
 // O(nlogn)
+// 归并排序
 function merge(left: number[], right: number[]) {
   let i = 0;
   let j = 0;

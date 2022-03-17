@@ -1,5 +1,6 @@
-import { swap } from '../utils';
+// import { swap } from '../utils';
 // O(n^2)
+// 选择排序
 function selectionSort(array: number[]) {
   const { length } = array;
   let indexMin;
@@ -11,7 +12,7 @@ function selectionSort(array: number[]) {
       }
     }
     if (i !== indexMin) {
-      swap(array, i, indexMin);
+      [array[i], array[indexMin]] = [array[indexMin], array[i]];
     }
   }
   return array;

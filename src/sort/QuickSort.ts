@@ -1,27 +1,28 @@
 import { swap } from '../utils';
-
+// 快速排序
+// O(nlogn)
 export function sortArray(nums: number[]): number[] {
   if (nums.length <= 1) {
     return nums;
   }
-  var pivotIndex = Math.floor(nums.length / 2);
-  var pivotValue = nums[pivotIndex];
+  var mid = Math.floor(nums.length / 2);
+  var val = nums[mid];
 
   var left = [];
   var right = [];
-
+  // 分区
   for (var i = 0; i < nums.length; i += 1) {
-    if (i === pivotIndex) {
+    if (i === mid) {
       continue;
     }
-    if (nums[i] < pivotValue) {
+    if (nums[i] < val) {
       left.push(nums[i]);
     } else {
       right.push(nums[i]);
     }
   }
-
-  return sortArray(left).concat([pivotValue], sortArray(right));
+  // 递归
+  return [...sortArray(left), val, ...sortArray(right)];
 }
 
 function partition(array: number[], left: number, right: number) {
