@@ -2,7 +2,7 @@
 // leetcode 226
 //
 // 时间O(n) 空间O(n)
-import Node from '../data-structures/Tree/Node';
+import Node from '../../data-structures/Tree/Node';
 
 export default function invertTree(n: Node) {
   const tmp = n.left;
