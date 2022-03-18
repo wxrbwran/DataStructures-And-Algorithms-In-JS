@@ -1,4 +1,6 @@
 // 有效的括号
+// letcode
+//
 export const isValid = (str: string): boolean => {
   if (str.length % 2 !== 0) {
     return false;
