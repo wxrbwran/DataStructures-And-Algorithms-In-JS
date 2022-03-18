@@ -36,7 +36,7 @@ export const bfs = (function () {
     while (queue.length) {
       const n = queue.shift() as number;
       if (!visited.includes(n)) {
-        console.log(n);
+        // console.log(n);
         visited.push(n);
         graph[n].forEach((k) => {
           queue.push(k);
